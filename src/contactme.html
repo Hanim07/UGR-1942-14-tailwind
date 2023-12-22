@@ -1,54 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-    <link rel="stylesheet" href="style1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+         document.addEventListener("DOMContentLoaded", function() {
+            var menuToggle = document.getElementById("menu-toggle");
+            var navList = document.querySelector(".navlist");
+            var menuIcon = document.querySelector(".menu-icon");
+
+            function updateNavListVisibility() {
+                if (window.innerWidth > 768) {
+                    navList.style.display = 'flex';
+                    navList.style.top = '25px';
+                    navList.style.background = 'transparent';
+                    menuIcon.style.display = 'none';
+                    navList.classList.remove("hidden");
+                    
+                } else if (window.innerWidth >= 661) {
+                    navList.style.display = 'none';
+                    menuIcon.style.display = 'block';
+                    navList.classList.add("hidden");
+                }
+                else if (window.innerWidth > 480){
+                    navList.style.display = 'flex';
+                    navList.style.top = '25px';
+                    navList.style.size = '10px';
+                    navList.style.background = 'transparent';
+                    menuIcon.style.display = 'none';
+                    navList.classList.remove("hidden");
+                }else {
+                    navList.style.display = 'none';
+                    menuIcon.style.display = 'block';
+                    navList.classList.add("hidden");
+                }
+            }
+            menuToggle.addEventListener("change", function() {
+                if (this.checked) {
+                    navList.style.display = 'block';
+                    navList.style.top = '70px';
+                    navList.style.right = '30px';
+                    navList.style.background = '#2a2a2a';
+                    navList.classList.remove("hidden");
+                } else {
+                    navList.style.display = 'none';
+                    navList.style.right = '';
+                    navList.classList.add("hidden");
+                }
+            });
+
+            window.addEventListener('resize', function() {
+                updateNavListVisibility();
+            });
+            updateNavListVisibility();
+        });
+
+        function scrollToTop() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop > 0) {
+            window.requestAnimationFrame(scrollToTop);
+            window.scrollTo(0, scrollTop - scrollTop / 8);
+        }
+        }
+        const backToTopButton = document.getElementById('back-to-top-btn');
+
+        window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 100) { 
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+        });
+    </script>
 </head>
-<body>
-    <header class="contactmeheader">
-        <ul class="navlist">
-            <li><a href="homepage.html">Home</a></li>
-            <li><a href="Aboutpage.html">About Me</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="contactme.html">Contact Me</a></li>
+
+<body class="bg-gray-900 text-white">
+    <header class="fixed w-full top-0 right-0 z-50 grid grid-cols-3 items-end bg-transparent py-6 px-5 transition-all duration-450">
+        <a href="#" class="logo text-white text-2xl font-bold col-span-1">Ham<span>moon</span></a>
+        <input type="checkbox" id="menu-toggle" class="hidden">
+        <label for="menu-toggle" class="menu-icon col-span-1 md:hidden absolute right-20 top-8 cursor-pointer text-2xl transition-all duration-450">
+            <i class="fa-solid fa-bars" ></i>
+        </label>
+        <ul class="navlist col-span-1 flex absolute top-8 right-20">
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="homepage.html">Home</a></li>
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="Aboutpage.html">About</a></li>
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="services.html">Services</a></li>
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="portfolio.html">Portfolio</a></li>
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="blog.html">Blog</a></li>
+            <li><a class="active py-3 px-4 text-blue-500 hover:text-blue-500 transition-all duration-300" href="contactme.html">Contact</a></li>
         </ul>
     </header>
+
     <section class="contact" id="contact">
-        <div class="contact-text">
-            <h2>Contact<span>Me</span></h2>
-            <h4>Contact me in the following address </h4>
-            <p>I am website designer and programmer creating brave interfaces for clients.</p>
-            <div class="list">
-                <ul>
-                    <li>Phone Number  <a href="#">+251967338002</a></li>
-                    <li>E-mail Address  <a href="#">han abd20@gmail.com</a></li>
-                    <li>Address  <a href="#">AAU 5kilo</a></li>
-                </ul>
+        <div class="contact-content bg-gray-900 grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="contact-text">
+                <h2 class="text-3xl mt-20 m-10"><span>Contact</span> Me</h2>
+                <h4 class="text-2xl font-semibold my-4 mx-10">You can reach me at this address</h4>
+                <p class="text-white my-4 mx-10">I am a website designer and programmer creating brave interfaces for clients.</p>
+                <div class="contact-list m-10">
+                    <ul>
+                        <li><i class="fa-solid fa-phone mr-3"></i> Phone Number<a href="tel:+251967338002">+251967338002</a></li>
+                        <li><i class="fa-regular fa-envelope mr-3"></i> E-mail Address<a href="mailto:hanabd20@gmail.com">hanabd20@gmail.com</a></li>
+                        <li><i class="fa-solid fa-location-dot mr-3"></i> Address<a href="#">AAU 5kilo</a></li>
+                    </ul>
+                </div>
             </div>
-            
-            <div class="contact-icons">
-                <a href="#"><i class="bx bxl-telegram"></i></a>
-                <a href="#"><i class="bx bxl-instagram"></i></a>
-                <a href="#"><i class="bx bxl-youtube"></i></a>
+    
+            <div class="contact-form mt-20 m-10">
+                <form action="none" id="form">
+                    <input type="text" id="name" placeholder="Your Name" required class="w-full px-4 py-2 bg-gray-700 text-gray-200 rounded-md mb-2">
+                    <input type="email" id="email" placeholder="Your E-mail" required class="w-full px-4 py-2 bg-gray-700 text-gray-200 rounded-md mb-2">
+                    <input type="number" id="number" placeholder="Your Phone Number" required class="w-full px-4 py-2 bg-gray-700 text-gray-200 rounded-md mb-2">
+                    <textarea name="text" id="textarea" cols="35" rows="10" placeholder="How can I help you" required class="w-full px-4 py-2 bg-gray-700 text-gray-200 rounded-md resize-none mb-2"></textarea>
+                    <input type="submit" value="Send Message" class="submit inline-block px-4 py-2 text-xl bg-blue-500 text-white rounded-md transition duration-300 transform hover:scale-105">
+                </form>
             </div>
         </div>
-
-        <div class="contact-form">
-            <form action="none">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your E-mail" required>
-                <input type="number" placeholder="Your Phone Number" required>
-                <textarea name="text" id="textarea" cols="35" rows="10" placeholder="How can I help you" required></textarea>
-                <input type="text" value="Send Message" class="submit" required>
-            </form>
-        </div>
-
     </section>
-    <footer>
-        <p> copyright messages 2023</p>
+
+    <button id="back-to-top-btn" onclick="scrollToTop()" class="relative mx-8 my-2 right-6 bg-blue-500 rounded-md text-white py-2 px-4 transition-all duration-300 hover:scale-90">Back to Top</button>
+    <footer class="grid grid-cols-2 items-center bg-gray-900 py-2">
+        <div class="footer-icons flex is-justify-content-flex-start ml-10">
+            <a href="https://t.me/Moon648" target="_blank" class="mr-2"><i class="fa-brands fa-telegram text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+            <a href="https://www.instagram.com/ham64_81?igshid=1x8tvgz4r5a6" target="_blank" class="mr-2"><i class="fa-brands fa-instagram text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+            <a href="https://github.com/hammoon" target="_blank" class="mr-2"><i class="fa-brands fa-github text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+            <a href="https://www.linkedin.com/in/hammoon/" target="_blank"><i class="fa-brands fa-linkedin-in text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+        </div>
+        <p class="text-gray-400 text-xs text-center">© 2023 Hanim Abdurezak. All rights reserved.</p>
     </footer>
 </body>
+
 </html>

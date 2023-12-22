@@ -1,99 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Page</title>
-    <link rel="stylesheet" href="style1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style.css">
+    <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var menuToggle = document.getElementById("menu-toggle");
+            var navList = document.querySelector(".navlist");
+            var menuIcon = document.querySelector(".menu-icon");
+
+            function updateNavListVisibility() {
+                if (window.innerWidth > 768) {
+                    navList.style.display = 'flex';
+                    navList.style.top = '25px';
+                    navList.style.background = 'transparent';
+                    menuIcon.style.display = 'none';
+                    navList.classList.remove("hidden");
+                    
+                } else if (window.innerWidth >= 661) {
+                    navList.style.display = 'none';
+                    menuIcon.style.display = 'block';
+                    navList.classList.add("hidden");
+                }
+                else if (window.innerWidth > 480){
+                    navList.style.display = 'flex';
+                    navList.style.top = '25px';
+                    navList.style.size = '10px';
+                    navList.style.background = 'transparent';
+                    menuIcon.style.display = 'none';
+                    navList.classList.remove("hidden");
+                }else {
+                    navList.style.display = 'none';
+                    menuIcon.style.display = 'block';
+                    navList.classList.add("hidden");
+                }
+            }
+            menuToggle.addEventListener("change", function() {
+                if (this.checked) {
+                    navList.style.display = 'block';
+                    navList.style.top = '70px';
+                    navList.style.right = '30px';
+                    navList.style.background = '#2a2a2a';
+                    navList.classList.remove("hidden");
+                } else {
+                    navList.style.display = 'none';
+                    navList.style.right = '';
+                    navList.classList.add("hidden");
+                }
+            });
+
+            window.addEventListener('resize', function() {
+                updateNavListVisibility();
+            });
+            updateNavListVisibility();
+        });
+        function scrollToTop() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop > 0) {
+            window.requestAnimationFrame(scrollToTop);
+            window.scrollTo(0, scrollTop - scrollTop / 8);
+        }
+        }
+        const backToTopButton = document.getElementById('back-to-top-btn');
+
+        window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 100) { 
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+        });
+    </script>
 </head>
-<body>
-    <header class="Aboutheader">
-        <ul class="navlist">
-            <li><a href="homepage.html">Home</a></li>
-            <li><a href="Aboutpage.html">About Me</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="contactme.html">Contact Me</a></li>
+
+<body class="bg-gray-900 text-white">
+    <header class="fixed w-full top-0 right-0 z-50 grid grid-cols-3 items-end bg-transparent py-6 px-5 transition-all duration-450">
+        <a href="#" class="logo text-white text-2xl font-bold col-span-1">Ham<span>moon</span></a>
+        <input type="checkbox" id="menu-toggle" class="hidden">
+        <label for="menu-toggle" class="menu-icon col-span-1 md:hidden absolute right-20 top-8 cursor-pointer text-2xl transition-all duration-450">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+        <ul class="navlist col-span-1 flex absolute top-8 right-20">
+            <li><a class="py-3 px-4 text-gray-400 hover:text-blue-500 transition-all duration-300" href="homepage.html">Home</a></li>
+            <li><a class="active py-3 px-4 text-blue-500 hover:text-blue-500 transition-all duration-300" href="Aboutpage.html">About</a></li>
+            <li><a class="py-3 px-4 text-gray-400 hover:text-blue-500 transition-all duration-300" href="services.html">Services</a></li>
+            <li><a class="py-3 px-4 text-gray-400 hover:text-blue-500 transition-all duration-300" href="portfolio.html">Portfolio</a></li>
+            <li><a class="py-3 px-4 text-gray-400 hover:text-blue-500 transition-all duration-300" href="blog.html">Blog</a></li>
+            <li><a class="py-3 px-4 text-gray-400 hover:text-blue-500 transition-all duration-300" href="contactme.html">Contact</a></li>
         </ul>
     </header>
-    <section class="about" id="about">
-        <div class="about-img">
-            <img src="../image/scr.png" alt="">
+    <section class="about grid grid-cols-1 md:grid-cols-2 items-center gap-2 justify-spacebetween">
+        <div class="about-img m-10 mt-20 rounded-lg">
+            <img src="image/scr.png" alt="">
         </div>
         <div class="about-text">
-            <h2>About <span>Me</span></h2>
-            <h4>Website Designer and Programmer</h4>
-            <p>I am a passionate website developer and programmer. I am fueled by a deep love for coding and a desire to create functional, visually appealing, and user-friendly websites.
-                Throughout my journey as a website developer, I have had the opportunity to work on various projects, ranging from personal websites to e-commerce platforms and web applications.
-                I am a firm believer in the power of continuous learning and staying up-to-date with industry trends. I am always exploring new frameworks, libraries, and methodologies to enhance my abilities and deliver cutting-edge solutions.
-                I enjoy collaborating with clients, designers, and fellow developers to bring ideas to life and achieve exceptional outcomes. By understanding the unique goals and requirements of each project, I strive to deliver customized solutions that meet and exceed expectations.
-                </p>
-                <a href="#" class="btn">Contact Me</a>
+            <h2 class="text-4xl m-10 mt-20">
+                About <span>Me</span>
+            </h2>
+            <h4 class="text-xl font-semibold m-10">Website Designer and Programmer</h4>
+            <p class="text-base leading-7 m-10">
+                I am a passionate website developer and programmer. I am fueled by a deep love for coding and a desire to create functional, visually appealing, and user-friendly websites. Throughout my journey as a website developer, I have had the opportunity to work on various projects, ranging from personal websites to e-commerce platforms and web applications. I am a firm believer in the power of continuous learning and staying up-to-date with industry trends. I am always exploring new frameworks, libraries, and methodologies to enhance my abilities and deliver cutting-edge solutions. I enjoy collaborating with clients, designers, and fellow developers to bring ideas to life and achieve exceptional outcomes. By understanding the unique goals and requirements of each project, I strive to deliver customized solutions that meet and exceed expectations.
+            </p>
+            <a href="contactme.html" class="btn inline-block py-3 px-6 bg-blue-500 m-10 rounded-md text-white text-base font-medium transition duration-300 transform hover:scale-105">Contact Me</a>
         </div>
     </section>
-
-    <section id="education">
-        <div class="section-title"><h1>My Education</h1></div>
-        <p>Primary Education</p>
-        <p>I learned in Bashewam and Endale schools where I have Completed Kindergarten, laying the foundation for a lifelong learning journey</p>
-        <hr>
-        <p> Preparatory and Secondary Education</p>
-        <p>I Successfully Completed my high school in Meweda school here in addis, demonstrating academic excellence and commitment to education. </p>
-        <hr>
-        <p>Higher Education</p>
-        <p>I am Currently pursuing higher education at AAU University, continuing the journey of intellectual growth and exploration.</p>
-    </section>
-    <section id="skills">
-        <div class="section-title">Skills</div>
-            <table>
-                <tr id="firstrow">
-                    <th>Skills</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>Programming</td>
-                    <td>Web Designing</td>
-                    <td>Graphic Design</td>
-                </tr>
-                <tr>
-                    <td>Mathematics</td>
-                    <td>Communication</td>
-                    <td>Sports</td>
-                </tr>
+    
+    <section id="container" class="grid grid-cols-1 md:grid-cols-2" >
+        <section id="education" class="items-center p-8 bg-gray-900">
+            <div class="education-text">
+                <h1 class="text-4xl">My <span>Education</span></h1>
+            </div>
+            <br>
+            <article>
+                <h4 class="text-xl font-semibold m-2">Primary Education</h4>
+                <p class="leading-7 m-2">I learned in Bashewam school where I have Completed Kindergarten, laying the foundation for a lifelong learning journey. I gained a solid understanding of fundamental subjects such as mathematics, language arts, science, and social studies. Throughout my primary education, I actively engaged in group projects, fostering my curiosity, critical thinking, and teamwork skills.</p>
+            </article>
+            <hr>
+            <article>
+                <h4 class="text-xl font-semibold m-2">Preparatory and Secondary Education</h4>
+                <p class="leading-7 m-2">I successfully completed my secondary education at Meweda school. During this phase, I demonstrated academic excellence and a strong commitment to education. I engaged in a diverse range of subjects, including advanced mathematics, physics, chemistry, and history. Alongside my studies, I actively participated in community service, further developing my leadership and communication skills.</p>
+            </article>
+            <hr>
+            <article>
+                <h4 class="text-xl font-semibold m-2">Higher Education</h4>
+                <p class="leading-7 m-2">I am currently pursuing higher education at AAU University, where I am expanding my knowledge and skills in Software Engineering. Throughout my higher education journey, I actively participate in student organizations and take part in internships, gaining practical experience. I am dedicated to continuous learning and strive to make meaningful contributions to my field.</p>
+            </article>
+        </section>
+    
+        <section id="skills" class="mt-10">
+            <div class="skill-items">
+                <h1 class="text-4xl m-10">
+                    My <span>Skills</span>
+                </h1>
+            </div>
+            <table class="bg-gray-900 w-40 h-30 border-collapse border border-white m-10 text-base">
+                <thead>
+                    <tr>
+                        <th class="text-gray-100 px-10 py-4">Skills</th>
+                        <th class="text-gray-800 px-10 py-4"></th>
+                        <th class="text-gray-800 px-10 py-4"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-10 py-4 border border-white">Programming</td>
+                        <td class="px-10 py-4 border border-white">Web Designing</td>
+                        <td class="px-10 py-4 border border-white">Graphic Design</td>
+                    </tr>
+                    <tr>
+                        <td class="px-10 py-4 border border-white">Mathematics</td>
+                        <td class="px-10 py-4 border border-white">App development</td>
+                        <td class="px-10 py-4 border border-white">Sports</td>
+                    </tr>
+                </tbody>
             </table>
-
+        </section>
     </section>
-
-
+    
     <section id="hobbies">
-        <div class="section-title">Hobbies</div>
-        <div class="hobbies-container">
-            <div class="hobby-item">
-                <h2>Reading</h2>
-                <img src="../image/hobby3.jpg" alt="Hobby Image 1">
+        <div class="hobbies-container"><h1 class="text-4xl m-10">Hobbies</h1></div>
+        <div class="hobby-item grid grid-cols-2 md:grid-cols-4 gap-10 m-10">
+            <div class="hobby relative overflow-hidden rounded-lg cursor-pointer">
+                <h2 class="text-2xl">Reading</h2>
+                <br>
+                <img src="image/hobby3.jpg" alt="Hobby Image 1" class="w-full rounded-lg transition-transform duration-500 transform hover:scale-110">
             </div>
-            <div class="hobby-item">
-                <h2>Gaming </h2>
-                <img src="../image/hooby2.jpg" alt="Hobby Image 2">
+            <div class="hobby relative overflow-hidden rounded-lg cursor-pointer">
+                <h2 class="text-2xl">Gaming</h2>
+                <br>
+                <img src="image/hooby2.jpg" alt="Hobby Image 2" class="w-full rounded-lg transition-transform duration-500 transform hover:scale-110">
             </div>
-
-            <div class="hobby-item">
-                <h2>Cooking</h2>
-                <video width="200" height="200" controls>
-                    <source src="../image/cooking.mp4" type="video/mp4" class="cookvideo">
+            <div class="hobby relative overflow-hidden rounded-lg cursor-pointer">
+                <h2 class="text-2xl">Cooking</h2>
+                <br>
+                <video controls class="w-full h-40 rounded-lg transition-transform duration-500 transform hover:scale-110">
+                    <source src="image/cooking.mp4" type="video/mp4">
                 </video>
             </div>
-
-            <div class="hobby-item">
-                <h2>Writing and Coding </h2>
-                <img src="../image/hobby1.jpg" alt="Hobby Image 3">
+            <div class="hobby relative overflow-hidden rounded-lg cursor-pointer">
+                <h2 class="text-2xl">Writing and Coding</h2>
+                <br>
+                <img src="image/hobby1.jpg" alt="Hobby Image 3" class="w-full rounded-lg transition-transform duration-500 transform hover:scale-110">
             </div>
-           
         </div>
     </section>
-    <footer>
-        <p> copyright messages 2023</p>
+    <button id="back-to-top-btn" onclick="scrollToTop()" class="relative mx-8 my-2 right-6 bg-blue-500 rounded-md text-white py-2 px-4 transition-all duration-300 hover:scale-90">Back to Top</button>
+    <footer class="grid grid-cols-2 items-center bg-gray-900 py-2">
+        <div class="footer-icons flex is-justify-content-flex-start ml-10">
+            <a href="https://t.me/Moon648" target="_blank" class="mr-2"><i class="fa-brands fa-telegram text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+            <a href="https://www.instagram.com/ham64_81?igshid=1x8tvgz4r5a6" target="_blank" class="mr-2"><i class="fa-brands fa-instagram text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+            <a href="https://github.com/hammoon" target="_blank" class="mr-2"><i class="fa-brands fa-github text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+            <a href="https://www.linkedin.com/in/hammoon/" target="_blank"><i class="fa-brands fa-linkedin-in text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+        </div>
+        <p class="text-gray-400 text-xs text-center">© 2023 Hanim Abdurezak. All rights reserved.</p>
     </footer>
 </body>
 

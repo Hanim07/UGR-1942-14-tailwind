@@ -3,57 +3,145 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Page</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap">
-    <link rel="stylesheet" href="style1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+        <script>
+             document.addEventListener("DOMContentLoaded", function() {
+            var menuToggle = document.getElementById("menu-toggle");
+            var navList = document.querySelector(".navlist");
+            var menuIcon = document.querySelector(".menu-icon");
+
+            function updateNavListVisibility() {
+                if (window.innerWidth > 768) {
+                    navList.style.display = 'flex';
+                    navList.style.top = '25px';
+                    navList.style.background = 'transparent';
+                    menuIcon.style.display = 'none';
+                    navList.classList.remove("hidden");
+                    
+                } else if (window.innerWidth >= 661) {
+                    navList.style.display = 'none';
+                    menuIcon.style.display = 'block';
+                    navList.classList.add("hidden");
+                }
+                else if (window.innerWidth > 480){
+                    navList.style.display = 'flex';
+                    navList.style.top = '25px';
+                    navList.style.size = '10px';
+                    navList.style.background = 'transparent';
+                    menuIcon.style.display = 'none';
+                    navList.classList.remove("hidden");
+                }else {
+                    navList.style.display = 'none';
+                    menuIcon.style.display = 'block';
+                    navList.classList.add("hidden");
+                }
+            }
+            menuToggle.addEventListener("change", function() {
+                if (this.checked) {
+                    navList.style.display = 'block';
+                    navList.style.top = '70px';
+                    navList.style.right = '30px';
+                    navList.style.background = '#2a2a2a';
+                    navList.classList.remove("hidden");
+                } else {
+                    navList.style.display = 'none';
+                    navList.style.right = '';
+                    navList.classList.add("hidden");
+                }
+            });
+
+            window.addEventListener('resize', function() {
+                updateNavListVisibility();
+            });
+            updateNavListVisibility();
+        });
+    
+            function scrollToTop() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (scrollTop > 0) {
+                window.requestAnimationFrame(scrollToTop);
+                window.scrollTo(0, scrollTop - scrollTop / 8);
+            }
+            }
+            const backToTopButton = document.getElementById('back-to-top-btn');
+    
+            window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 100) { 
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+            });
+        </script>
 </head>
 
-<body>
-
-    <header class="blogheader">
-        <ul class="navlist">
-            <li><a href="homepage.html">Home</a></li>
-            <li><a href="Aboutpage.html">About Me</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="contactme.html">Contact Me</a></li>
+<body class="bg-gray-900 text-white">
+    <header class="fixed w-full top-0 right-0 z-50 grid grid-cols-3 items-end bg-transparent py-6 px-5 transition-all duration-450">
+        <a href="#" class="logo text-white text-2xl font-bold col-span-1">Ham<span>moon</span></a>
+        <input type="checkbox" id="menu-toggle" class="hidden">
+        <label for="menu-toggle" class="menu-icon col-span-1 md:hidden absolute right-20 top-8 cursor-pointer text-2xl transition-all duration-450">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+        <ul class="navlist col-span-1 flex absolute top-8 right-20">
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="homepage.html">Home</a></li>
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="Aboutpage.html">About</a></li>
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="services.html">Services</a></li>
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="portfolio.html">Portfolio</a></li>
+            <li><a class="active py-3 px-4 text-blue-500 hover:text-blue-500 transition-all duration-300" href="blog.html">Blog</a></li>
+            <li><a class="py-3 px-4 text-gray-300 hover:text-blue-500 transition-all duration-300" href="contactme.html">Contact</a></li>
         </ul>
     </header>
+    <main>
+        <section class="blog m-10">
+            <div class="main-text">
+                <h2 class="text-4xl mt-20 m-10">My <span>Blog</span></h2>
+            </div>
+            <div class="blog-content grid grid-cols-1 md:grid-cols-3 gap-10 place-content-center mt-10">
+                <div class="blog-container bg-gray-700 rounded-lg shadow-md transition-transform hover:-translate-y-2">
+                    <img src="image/blog2.jpg" alt="Image 2" class="w-40 h-60 justify-center rounded-t-lg mx-10 my-10">
+                    <p class="text-white px-4 pb-2 text-sm">Coffee with Coding</p>
+                    <p class="text-white px-4 pb-10 text-sm">Coffee has long been a beloved companion for many, providing a boost of energy and a moment of respite. Pairing it with coding creates a delightful synergy, blending the invigorating properties of caffeine with the creative process of programming.</p>
+                </div>
 
-    <div class="bcontent">
-        <h1 style="font-family: 'Playfair Display', serif;">Blog</h1>
+                <div class="blog-container bg-gray-700 rounded-lg shadow-md transition-transform hover:-translate-y-2">
+                    <img src="image/blog1.jpg" alt="Image 1" class="w-90 h-60  rounded-t-lg mx-10 my-10">
+                    <p class="text-white px-4 pb-2 text-sm">Embracing the Joy of Lifelong Learning</p>
+                    <p class="text-white px-4 pb-10 text-sm">Learning is a lifelong journey, an ever-evolving process that fuels personal growth, expands our horizons, and ignites our curiosity. From the moment we enter the world, we embark on a continuous quest for knowledge and understanding.</p>
+                </div>
 
-        <div class="bcontainer">
-            <img src="../image/blog1.jpg" alt="Image 1">
-            <p>Embracing the Joy of Lifelong Learning</p>
-            <p> Learning is a lifelong journey, an ever-evolving process that fuels personal growth, expands our horizons, and ignites our curiosity. From the moment we enter the world, we embark on a continuous quest for knowledge and understanding</p>
+                <div class="blog-video-container bg-gray-700 rounded-lg shadow-md transition-transform hover:-translate-y-2">
+                    <video src="image/blog3.mp4" controls class="w-90 h-60 rounded-t-lg mx-10 my-10"></video>
+                    <p class="text-white px-4 pb-2 text-sm">Reflections on High School: A Time of Growth, Friendship, and Discovery</p>
+                    <p class="text-white px-4 pb-10 text-sm">High school is a remarkable phase in our lives, encompassing a myriad of experiences that shape our identities and prepare us for the journey ahead. It's a time of transition, growth, and self-discovery.</p>
+                </div>
+            </div>
+            
+            <article class="blog-audio-container mt-10">
+                <h4 class="text-white">From Audios</h4>
+                <br>
+                <audio controls>
+                    <source src="image/calmingaudio.mp3" type="audio/mp3">
+                </audio>
+                <p class="text-white px-4 pb-10 text-sm mt-10">Listen to this calming instrumental music while reading a book or working. It's perfect for creating a focused and tranquil environment.</p>
+            </article>
+        </section>
+    </main>
+    <button id="back-to-top-btn" onclick="scrollToTop()" class="relative mx-8 my-2 right-6 bg-blue-500 rounded-md text-white py-2 px-4 transition-all duration-300 hover:scale-90">Back to Top</button>
+    <footer class="grid grid-cols-2 items-center bg-gray-900 py-2">
+        <div class="footer-icons flex is-justify-content-flex-start ml-10">
+            <a href="https://t.me/Moon648" target="_blank" class="mr-2"><i class="fa-brands fa-telegram text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+            <a href="https://www.instagram.com/ham64_81?igshid=1x8tvgz4r5a6" target="_blank" class="mr-2"><i class="fa-brands fa-instagram text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+            <a href="https://github.com/hammoon" target="_blank" class="mr-2"><i class="fa-brands fa-github text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
+            <a href="https://www.linkedin.com/in/hammoon/" target="_blank"><i class="fa-brands fa-linkedin-in text-white text-2xl transition-all duration-300 hover:text-blue-500"></i></a>
         </div>
-
-        <div class="bvideo-container">
-            <video src="../image/blog3.mp4"  ></video>
-            <p>Reflections on High School: A Time of Growth, Friendship, and Discovery</p>
-            <p>High school is a remarkable phase in our lives, encompassing a myriad of experiences that shape our identities and prepare us for the journey ahead. It's a time of transition, growth, and self-discovery.</p>
-        </div>
-
-        <div class="bcontainer">
-            <img src="../image/blog2.jpg" alt="Image 2">
-            <p> Coffee has long been a beloved companion for many, providing a boost of energy and a moment of respite. Pairing it with coding creates a delightful synergy, blending the invigorating properties of caffeine with the creative process of programming. </p>
-        </div>
-
-        <div class="baudio-container">
-            <audio controls>
-                <source src="../image/calmingaudio.mp3" type="audio/mp3">
-                Your browser does not support the audio tag.
-            </audio>
-            <p>Listen to this calming instrumental music while reading a book or working. It's perfect for creating a focused and tranquil environment.</p>
-        </div>
-    </div>
-
-    <footer >
-        <p> copyright messages 2023</p>
+        <p class="text-gray-400 text-xs text-center">© 2023 Hanim Abdurezak. All rights reserved.</p>
     </footer>
-
 </body>
 
 </html>
